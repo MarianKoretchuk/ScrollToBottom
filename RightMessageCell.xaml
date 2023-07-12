@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ScrollToBottom.RightMessageCell">
+    <Border BackgroundColor="Red" Padding="0" Margin="16,5">
+        <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, *" RowSpacing="0"
+            Margin="10,10,10,0">
+            <Image
+                Grid.Column="0"
+                Margin="10,0,0,0"
+                HeightRequest="40"
+                WidthRequest="40"
+                Source="dotnet_bot">
+            </Image>
+            <HorizontalStackLayout Grid.Column="1" VerticalOptions="Start" Margin="0,0,10,0">
+                <Label Text="Useer Name"
+                    Margin="10,0"
+                    HorizontalOptions="Start"
+                    VerticalTextAlignment="End"
+                    VerticalOptions="End" />
+                <Label Text="BB"
+                    HorizontalOptions="Start"
+                    VerticalTextAlignment="End"
+                    VerticalOptions="End" />
+            </HorizontalStackLayout>
+            <Label Grid.Column="1" Grid.Row="1"
+                Margin="0,10"
+                Text="{Binding Message}"
+                HorizontalOptions="Start"/>
+            <Image Grid.Column="1"
+                Grid.Row="1"
+                Source="{Binding Url}"
+                HeightRequest="200"
+                WidthRequest="200"
+                Aspect="AspectFill"
+                HorizontalOptions="StartAndExpand"
+                VerticalOptions="StartAndExpand">
+                <Image.Triggers>
+                    <MultiTrigger TargetType="Image">
+                        <MultiTrigger.Conditions>
+                            <PropertyCondition Property="Source" Value="{x:Null}" />
+                        </MultiTrigger.Conditions>
+                        <Setter Property="WidthRequest" Value="0" />
+                        <Setter Property="HeightRequest" Value="0" />
+                    </MultiTrigger>
+                </Image.Triggers>
+            </Image>
+        </Grid>
+    </Border>
+</ContentView>

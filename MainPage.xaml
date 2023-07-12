@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:main="clr-namespace:ScrollToBottom"
+    x:Class="ScrollToBottom.MainPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="IncomingChatMessageView">
+                <main:LeftMessageCell />
+            </DataTemplate>
+            <DataTemplate x:Key="OutgoingChatMessageView">
+                <main:RightMessageCell />
+            </DataTemplate>
+            <main:ChatTemplateSelector x:Key="ChatTemplateSelector"
+                    IncomingChatMessage="{StaticResource IncomingChatMessageView}"
+                    OutgoingChatMessage="{StaticResource OutgoingChatMessageView}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <main:MainViewModel />
+    </ContentPage.BindingContext>
+    <Grid RowDefinitions="*, Auto">
+        <Grid Grid.Row="0">
+            <CollectionView
+                Grid.Row="0"
+                ItemsSource="{Binding Messages}"
+                ItemTemplate="{StaticResource ChatTemplateSelector}">
+                <CollectionView.EmptyView>
+                    <Label Text="No messages so far."
+                        Style="{StaticResource EmptyViewLabelStyle}" />
+                </CollectionView.EmptyView>
+                <CollectionView.Behaviors>
+                    <main:ScrollToBottomBehavior />
+                </CollectionView.Behaviors>
+            </CollectionView>
+        </Grid>
+
+        <Grid ColumnDefinitions="*,*" Grid.Row="1">
+            <Button Grid.Column="0"
+            Text="Add text"
+            Command="{Binding AddMessageCommad}"
+            HorizontalOptions="Fill"
+            Margin="10,0" />
+
+            <Button Grid.Column="1"
+            Text="Add image"
+            Command="{Binding AddImageCommad}"
+            HorizontalOptions="Fill"
+            Margin="10,0" />
+        </Grid>
+    </Grid>
+</ContentPage>
