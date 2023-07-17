@@ -1,6 +1,6 @@
 ﻿namespace ScrollToBottom;
 
-public partial class LeftMessageCell : ContentView
+public partial class LeftMessageCell
 {
 	public LeftMessageCell()
 	{

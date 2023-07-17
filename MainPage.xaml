@@ -20,7 +20,7 @@
         <main:MainViewModel />
     </ContentPage.BindingContext>
     <Grid RowDefinitions="*, Auto">
-        <Grid Grid.Row="0">
+      
             <CollectionView
                 Grid.Row="0"
                 ItemsSource="{Binding Messages}"
@@ -33,7 +33,7 @@
                     <main:ScrollToBottomBehavior />
                 </CollectionView.Behaviors>
             </CollectionView>
-        </Grid>
+  
 
         <Grid ColumnDefinitions="*,*" Grid.Row="1">
             <Button Grid.Column="0"
